@@ -1,0 +1,161 @@
+<div class="container space">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-sm-12">
+      <div class="mainTitle">
+        Search
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-lg-3 col-sm-3 col-sm-12">
+        <div class="content">
+          <form name="form" [formGroup]="form1" (ngSubmit)="submit1()">
+            <div class="form-group">
+              <label for="numberOfCount">Count:</label>
+              <input style="margin-top: 2px" id="numberOfCount" formControlName="numberOfCount" class="form-control"
+                     type="number">
+              <div *ngIf="submitted && f.countOp.errors">
+                <div class="text-danger">Count is required.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="StartDate">Start date: </label>
+              <input id="StartDate" type="text" class="form-control" autocomplete="off"
+                     [bsConfig]="{ dataOyt: 'YYYY-MM-DD' }"
+                     #dp="bsDatepicker" bsDatepicker formControlName="startDate">
+              <div *ngIf="submitted && f.startDate.errors">
+                <div class="text-danger">Start time is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="EndTime">End date: </label>
+              <input formControlName="endDate" id="EndTime" type="text" autocomplete="off"
+                     class="form-control" #dp="bsDatepicker"
+                     bsDatepicker>
+              <br>
+              <div *ngIf="submitted && form1.errors && form1.errors.startTimeAfterEndTime">
+                <div class="text-danger">End time must be after start time.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="withReserved">With reserved? </label>
+              <input formControlName="withReserved" id="withReserved" type="checkbox">
+              <br>
+            </div>
+            <div>
+              <button class="btnSubmit add">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-9 col-sm-9 col-sm-12">
+        <div class="content">
+          <h3 *ngIf="((rooms == undefined || rooms.length === 0) && submitted)">No rooms by search</h3>
+          <h3 *ngIf="((rooms == undefined || rooms.length === 0) && !submitted)">No rooms</h3>
+          <table *ngIf="rooms != undefined && rooms.length !== 0" class="table table-hover table-striped ">
+            <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Space free</th>
+              <th scope="col">Space size</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody class="tableBody">
+            <tr *ngFor="let room of rooms">
+              <td>{{room.title}}</td>
+              <td>{{room.spaceLeft}}</td>
+              <td>{{room.spaceSize}}</td>
+              <td>
+                <button class="action" (click)="redirectToRoom(room.floorId,room.id)">
+                  <i class="far fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container space1">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-sm-12">
+      <div class="mainTitle">
+        Search Employee
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-lg-3 col-sm-3 col-sm-12">
+        <div class="content">
+          <form name="form" [formGroup]="formSearchEmployee" (ngSubmit)="submit2()">
+            <div class="form-group">
+              <label for="firstName">First name:</label>
+              <input style="margin-top: 2px" id="firstName" formControlName="firstName" class="form-control"
+                     type="text">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last name:</label>
+              <input style="margin-top: 2px" id="lastName" formControlName="lastName" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <label for="nickname">Nickname:</label>
+              <input style="margin-top: 2px" id="nickname" formControlName="nickname" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <label for="roomId">Room:</label>
+              <select allow-clear="true" id="roomId" class="custom-select" formControlName="roomId"
+                      required>
+                <option *ngFor="let room of roomsForSelect" value="{{room.id}}">{{room.title}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="roomId">Project:</label>
+              <select allow-clear="true" id="organization" class="custom-select" formControlName="organization">
+                <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" formControlName="notActive" id="notActive"><label for="notActive">Show not active employees</label>
+            </div>
+            <div>
+              <button type="submit" class="btnSubmit">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-9 col-sm-9 col-sm-12">
+        <div class="content">
+          <h3 *ngIf="employees == undefined || employees.length === 0">No employees by search</h3>
+          <table *ngIf="employees != undefined && employees.length !== 0" class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">First name</th>
+              <th scope="col">Last name</th>
+              <th scope="col">Project</th>
+            </tr>
+            </thead>
+            <tbody class="tableBody1" (scroll)="onScroll1($event)">
+            <tr *ngFor="let employee of employees">
+              <td>{{employee.firstName}}</td>
+              <td>{{employee.lastName}}</td>
+              <td>{{employee.organizationName}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

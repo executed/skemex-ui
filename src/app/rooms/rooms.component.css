@@ -1,0 +1,224 @@
+  .right-side,
+.left-side{
+  position: absolute;
+  display: flex;
+  width: 100%;
+}
+
+.right-side{
+  bottom: 100%;
+}
+
+.left-side{
+  top: 100%;
+}
+
+.small-room{
+  flex-grow: 1;
+}
+
+.standart-room{
+  flex-grow: 2;
+}
+
+.large-room{
+  flex-grow: 4;
+}
+
+.room{
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 36vh;
+  border-right: 2px solid #313131;
+  border-left: 2px solid #313131;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+}
+
+.right-side .room{
+  border-top: 3px solid #313131;
+}
+
+.left-side .room{
+  border-bottom: 3px solid #313131;
+}
+
+.room-title{
+  color: #000;
+  text-align: center;
+  position: relative;
+  z-index: 999;
+  cursor: pointer;
+  margin: 0;
+  transition: .2s;
+  width: 140px;
+}
+.room-title-text{
+  font-size: 4.5vmin;
+  word-break: break-all;
+}
+.room-title::before{
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  content: '';
+  background: #000;
+  width: 0%;
+  height: 2px;
+  transition: .5s;
+}
+
+.room-title::after{
+  position: absolute;
+  top: 0;
+  right: -20px;
+  content: '';
+  background: #000;
+  width: 0%;
+  height: 2px;
+  transition: .5s;
+}
+
+.room:hover .room-title::before{
+  width: 100%;
+}
+
+.room:hover .room-title::after{
+  width: 100%;
+}
+
+.capacity{
+  background: #313131;
+  color: #fff;
+  border-radius: 2px;
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.2rem;
+  line-height: 30px;
+  text-align: center;
+}
+.addRoomButton1 {
+  border: none;
+  text-align:center;
+  display: inline-block;
+  position:fixed;
+  top: 36vh;
+  right: 20px;
+  cursor:pointer;
+  color:black;
+  font-size:5vmax;
+  background: none;
+}
+
+.addRoomButton1:hover{
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transition: 0.3s;
+}
+
+.addRoomButton {
+  border: none;
+  text-align:center;
+  display: inline-block;
+  position:fixed;
+  top: 36vh;
+  right: 20px;
+  cursor:pointer;
+  color:white;
+  font-size:5vmax;
+  background: none;
+}
+
+.addRoomButton:hover{
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transition: 0.3s;
+}
+.b-pict:after,
+.b-pict__close {
+  opacity: 0;
+  transition: 0.3s;
+}
+.b-pict__close {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  z-index: 9;
+  text-decoration: none;
+  width: 30px;
+  height: 30px;
+  line-height: 1;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 50%;
+  background: none;
+  border: none;
+}
+.b-pict:hover:after,
+.b-pict:hover .b-pict__close {
+  opacity: 1;
+}
+.error {
+  color: red;
+  font-size: 2vmin;
+  padding-left: 37%;
+}
+.btnDelete {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 3.3vmin;
+  transition: 250ms background ease-in;
+}
+.modalTitle{
+  padding-top: 10px;
+  text-align: center;
+}
+.btnDelete:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+.btnSubmit {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 4vmin;
+  transition: 250ms background ease-in;
+}
+.btnSubmit:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+
+.modalTitle{
+  margin-left: 4vmin;
+}
+.modalTitle{
+  margin-left: 4vmin;
+}
+.modalBody{
+  padding-right: 4vmin;
+  padding-left: 4vmin;
+}

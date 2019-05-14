@@ -1,0 +1,89 @@
+.content_ {
+  position:relative;
+}
+
+.countMe {
+  position: absolute;
+  background:red;
+  text-align: center;
+  border-radius: 50%;
+  color:white;
+  height: 2vmin;
+  padding:0.3vmin;
+  margin-left: 1.3vh;
+  font-weight: bold;
+  font-size:1.2vmin;
+}
+a{
+  width: 8vh;
+  float: left;
+  display: block;
+  color: #f2f2f2 !important;
+  text-align: center;
+  padding: 2vh;
+  text-decoration: none;
+}
+
+.customNotification{
+  color: white;
+  font-size: 2vmin;
+  padding: 1vmin;
+  border-radius: 1vmin;
+  margin: 1vmin;
+}
+
+.INFO{
+  background-color: #28a745;
+  opacity: 0.7;
+}
+
+.WARNING{
+  background-color: #ffc132;
+  opacity: 0.7;
+}
+
+.ERROR{
+  background-color: #ff9034;
+  opacity: 0.7;
+}
+
+.FATAL{
+  background-color: #ec0000;
+  opacity: 0.7;
+}
+
+
+.close{
+  color: #f9f9f9;
+}
+
+a:hover{
+  text-decoration: none;
+  background-color: #555;
+  color: white;
+}
+
+.allNotif{
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.closeModal{
+  color: #313131;
+}
+
+.pull-right{
+  float: right !important;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  font-size: 2vmin;
+  padding-right: 1vh;
+}
+
+.nthNew{
+  margin-top: 3vh;
+  font-size: 3vh;
+  font-style: italic;
+  color: darkgreen;
+  text-align: center;
+}

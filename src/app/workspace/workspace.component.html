@@ -1,0 +1,346 @@
+<div class="container space">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-sm-12">
+      <div class="mainTitle">
+        <button routerLink="/floor/{{room.officeId}}/room/{{room.id}}" title="Room" class="backToRoom"><i
+          class="fas fa-arrow-alt-circle-left"></i></button>
+        Room: {{room.title}} Workspace #: {{workspace.number}}
+      </div>
+      <div class="block status" style="text-align: center">
+        {{workspaceName}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="workspace.status == 'BUSY'">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 col-sm-12">
+        <div class="content">
+          <b>Employee:</b> {{workspace.firstName + ' ' + workspace.lastName}}<br>
+          <b>Project:</b> {{workspace.organizationName}}<br>
+          <button *ngIf="authService.isAdmin()" (click)="makeSlotFree()" class="btnSubmit">free up space</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="workspace.status == 'FREE'">
+    <div class="row">
+      <div class="col-lg-3 col-sm-3 col-sm-12">
+        <div class="content">
+          <button *ngIf="authService.isAdmin()" type="button" class="btnSubmit add" (click)="openModal(template2)">Set
+            employee
+          </button>
+          <button type="button" class="btnSubmit add" (click)="openModal(template)">Add reservation</button>
+        </div>
+      </div>
+      <div class="col-lg-9 col-sm-9 col-sm-12">
+        <div class="content">
+          <h3 *ngIf="reservations == undefined || reservations.length === 0">No reservations yet</h3>
+          <table *ngIf="reservations != undefined && reservations.length !== 0" class="table table-hover">
+            <thead>
+            <tr>
+              <th></th>
+              <th scope="col">RequestedTime</th>
+              <th scope="col">Employee</th>
+              <th scope="col">StartTime</th>
+              <th scope="col">EndTIme</th>
+              <th scope="col">Status</th>
+              <th *ngIf="authService.isAdmin()" scope="col">Action</th>
+              <th *ngIf="authService.isAdmin()" scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody class="tableBody">
+            <tr *ngFor="let reservation of reservations">
+              <th scope="row"></th>
+              <td>{{reservation.requestedTime | date :'short'}}</td>
+              <td>{{reservation.employeeNickname}}</td>
+              <td>{{reservation.startTime | date :'shortDate'}}</td>
+              <td *ngIf="reservation.endTime != undefined">{{reservation.endTime | date :'shortDate'}}</td>
+              <td *ngIf="reservation.endTime == undefined">{{'∞'}}</td>
+              <td>{{reservation.requestStatus}}</td>
+              <td *ngIf="authService.isAdmin() && reservation.requestStatus == 'OPEN'" style="margin-top: 0">
+                <button class="action" (click)="approve(reservation, 'APPROVED')">
+                  <i class="fas fa-check-square"></i>
+                </button>
+                <button class="action" (click)="approve(reservation, 'DECLINED')">
+                  <i class="fas fa-times-circle"></i>
+                </button>
+              </td>
+              <td
+                *ngIf="authService.isAdmin() && (reservation.requestStatus == 'APPROVED' || reservation.requestStatus == 'ACTIVE')">
+                <button class="action" (click)="approve(reservation, 'DECLINED')">
+                  <i class="fas fa-times-circle"></i>
+                </button>
+              </td>
+              <td *ngIf="authService.isAdmin() && reservation.description != '' ">
+                <button class="btn btn-dark" (click)="openDescription(templateDescription, reservation.description)">
+                  View
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add reservation</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="!createEmployee" novalidate name="form" [formGroup]="formAddRequest"
+          (ngSubmit)="onSubmit()">
+      <div class="text-right" *ngIf="authService.isAdmin()">
+        <button class="btn btn-dark" (click)="createEmployeeStatus()">
+          New Employee
+        </button>
+      </div>
+      <div *ngIf="authService.isAdmin()">
+        <label for="organization">Project: </label>
+        <select id="organization" class="custom-select" formControlName="organization"
+                [ngClass]="{ 'is-invalid': submitted && formAddR.organization.errors }" (change)="getEmployees($event)"
+                required>
+          <option value="" selected disabled hidden>select project</option>
+          <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+        </select>
+        <div *ngIf="submitted && formAddR.organization.errors">
+          <div class="text-danger">Project is required</div>
+        </div>
+      </div>
+      <div hidden id="employeeDiv" *ngIf="authService.isAdmin()">
+        <label for="employee">Employee: </label>
+        <select id="employee" class="custom-select" formControlName="employee"
+                [ngClass]="{ 'is-invalid': submitted && formAddR.employee.errors }">
+          <option value="" hidden disabled>select employee</option>
+          <option *ngFor="let employee of employees" value="{{employee.nickname}}">{{employee.firstName + ' '
+          + employee.lastName}}
+          </option>
+        </select>
+        <div *ngIf="submitted && formAddR.employee.errors">
+          <div class="text-danger">Employee is required</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="StartDate">Start date: </label>
+        <input id="StartDate" type="text" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && formAddR.startDate.errors }"
+               #dp="bsDatepicker" bsDatepicker formControlName="startDate">
+        <div *ngIf="submitted && formAddR.startDate.errors">
+          <div class="text-danger" *ngIf="formAddR.startDate.errors.required">Start time is required</div>
+          <div class="text-danger" *ngIf="formAddR.startDate.errors.startTimeAfterNow">Start time must be after or
+            equals today.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="EndTime">End date: </label>
+        <input formControlName="endDate" id="EndTime" type="text"
+               [ngClass]="{ 'is-invalid': submitted && formAddR.endDate.errors }"
+               class="form-control" #dp="bsDatepicker"
+               bsDatepicker>
+        <br>
+        <div *ngIf="submitted && formAddRequest.errors && formAddRequest.errors.startTimeAfterEndTime">
+          <div class="text-danger">End time must be after start time.</div>
+        </div>
+        <div *ngIf="submitted && formAddRequest.errors && formAddRequest.errors.DateForRequestIsBusy">
+          <div class="text-danger">Date for request is busy!</div>
+        </div>
+      </div>
+      <div>
+        <label for="description">Description: </label>
+        <input id="description" type="text" class="form-control" formControlName="description">
+      </div>
+      <div class="text-center">
+        <button class="btnSubmit">
+          Create
+        </button>
+      </div>
+    </form>
+
+    <form *ngIf="createEmployee && authService.isAdmin()" novalidate name="form" (ngSubmit)="onSubmit4()"
+          [formGroup]="formAddNewRequest">
+      <div>
+        <label for="organization3">Project: </label>
+        <select id="organization3" formControlName="organization" class="custom-select"
+                [ngClass]="{ 'is-invalid': submitted && formNewR.organization.errors }">
+          <option value="" hidden disabled>select project</option>
+          <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
+        </select>
+        <div *ngIf="submitted && formNewR.organization.errors">
+          <div class="text-danger">Project is required</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="firstName1">FirstName: </label>
+        <input formControlName="firstName" class="form-control" type="text" id="firstName1"
+               [ngClass]="{ 'is-invalid': submitted && formNewR.firstName.errors }">
+        <div *ngIf="submitted && formNewR.firstName.errors">
+          <div class="text-danger">First name is required</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="lastName1">LastName: </label>
+        <input formControlName="lastName" class="form-control" type="text" id="lastName1"
+               [ngClass]="{ 'is-invalid': submitted && formNewR.lastName.errors }">
+        <div *ngIf="submitted && formNewR.lastName.errors">
+          <div class="text-danger">Last name is required</div>
+        </div>
+        <div *ngIf="submitted && formAddNewRequest.errors && formAddNewRequest.errors.nicknameExist">
+          <div class="text-danger">User with this name is exist.</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="StartDate1">Start date: </label>
+        <input formControlName="startDate" id="StartDate1" type="text"
+               [ngClass]="{ 'is-invalid': submitted && formNewR.startDate.errors }"
+               class="form-control"
+               #dp="bsDatepicker"
+               bsDatepicker>
+        <div *ngIf="submitted && formNewR.startDate.errors">
+          <div class="text-danger" *ngIf="formNewR.startDate.errors.required">Start time is required</div>
+          <div class="text-danger" *ngIf="formNewR.startDate.errors.startTimeAfterNow">Start time must be after or
+            equals today.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="EndTime1">End date: </label>
+        <input formControlName="endDate" id="EndTime1" type="text"
+               [ngClass]="{ 'is-invalid': submitted && formNewR.endDate.errors }"
+               class="form-control"
+               #dp="bsDatepicker"
+               bsDatepicker>
+        <div *ngIf="submitted && formAddNewRequest.errors && formAddNewRequest.errors.startTimeAfterEndTime">
+          <div class="text-danger">End time must be after start time.</div>
+        </div>
+        <div *ngIf="submitted && formAddNewRequest.errors && formAddNewRequest.errors.DateForRequestIsBusy">
+          <div class="text-danger">Date for request is busy!</div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="btnSubmit">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+<ng-template #templateDescription>
+  <div class="modal-header">
+    <div class="modalTitle"><h4>Description</h4></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <p class="lead">{{description}}</p>
+</ng-template>
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Set employee</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form *ngIf="!createEmployee" novalidate name="form" [formGroup]="formSetEmployee"
+          (ngSubmit)="onSubmit2()">
+      <div class="text-right">
+        <button class="btn btn-dark" (click)="createEmployeeStatus()">
+          New Employee
+        </button>
+      </div>
+      <div>
+        <label for="organization1">Project: </label>
+        <select id="organization1" class="custom-select" formControlName="organization"
+                [ngClass]="{ 'is-invalid': submitted && formSetE.organization.errors }" (change)="getEmployees($event)"
+                required>
+          <option value="" selected disabled hidden>select project</option>
+          <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+        </select>
+        <div *ngIf="submitted && formSetE.organization.errors">
+          <div class="text-danger">Project is required</div>
+        </div>
+      </div>
+      <div hidden id="employeeDiv1">
+        <label for="employee1">Employee: </label>
+        <select id="employee1" class="custom-select" formControlName="employee"
+                [ngClass]="{ 'is-invalid': submitted && formSetE.employee.errors }">
+          <option value="" hidden disabled>select employee</option>
+          <option *ngFor="let employee of employees"
+                  value="{{employee.nickname}}">{{employee.firstName + ' ' + employee.lastName}}
+          </option>
+        </select>
+        <div *ngIf="submitted && formSetE.employee.errors">
+          <div class="text-danger">Employee is required</div>
+        </div>
+        <br>
+        <br>
+        <div class="text-danger">Attention! The old workspace will be freed!!!  </div>
+      </div>
+
+      <div class="text-center">
+        <button class="btnSubmit">
+          Set
+        </button>
+      </div>
+    </form>
+    <form *ngIf="createEmployee" novalidate name="form" (ngSubmit)="onSubmit3()" [formGroup]="formSetNewEmployee">
+      <div>
+        <label for="organization2">Project: </label>
+        <select id="organization2" formControlName="organization" class="custom-select"
+                [ngClass]="{ 'is-invalid': submitted && formNewE.organization.errors }">
+          <option value="" hidden disabled>select project</option>
+          <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
+        </select>
+        <div *ngIf="submitted && formNewE.organization.errors">
+          <div class="text-danger">Project is required</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="firstName">FirstName: </label>
+        <input formControlName="firstName" class="form-control" type="text" id="firstName"
+               [ngClass]="{ 'is-invalid': submitted && formNewE.firstName.errors }">
+        <div *ngIf="submitted && formNewE.firstName.errors">
+          <div class="text-danger">First name is required</div>
+        </div>
+      </div>
+
+      <div>
+        <label for="lastName">LastName: </label>
+        <input formControlName="lastName" class="form-control" type="text" id="lastName"
+               [ngClass]="{ 'is-invalid': submitted && formNewE.lastName.errors }">
+        <div *ngIf="submitted && formNewE.lastName.errors">
+          <div class="text-danger">Last name is required</div>
+        </div>
+        <div *ngIf="submitted && formSetNewEmployee.errors && formSetNewEmployee.errors.nicknameExist">
+          <div class="text-danger">User with this name is exist!</div>
+        </div>
+
+      </div>
+      <div class="text-center">
+        <button class="btnSubmit">
+          Set
+        </button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+

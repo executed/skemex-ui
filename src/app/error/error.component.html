@@ -1,0 +1,66 @@
+
+<div class="container space">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-sm-12">
+      <div class="mainTitle">
+        <a *ngIf="!locationFormVisible">Error history</a>
+        <a *ngIf="locationFormVisible">Stack trace</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="locationFormVisible">
+      <div>
+        <button class="backy" (click)="closeLocationForm()">
+          <i class="fas fa-chevron-circle-left"></i>
+        </button>
+      </div>
+      <div class = "location-content">
+        {{selectedErrorLogLocation}}
+      </div>
+  </div>
+  <div *ngIf="!locationFormVisible">
+    <div class="row">
+      <div class="col-lg-9 col-sm-9 col-sm-12">
+        <div class="content">
+          <h3 *ngIf="errorLogList === undefined || errorLogList.length === 0">Empty</h3>
+          <table *ngIf="errorLogList !== undefined && errorLogList.length !== 0" class="table table-hover">
+            <thead>
+            <tr>
+              <th></th>
+              <th scope="col">Name</th>
+              <th scope="col">URL</th>
+              <th scope="col">Status</th>
+              <th scope="col">Message</th>
+              <th scope="col">Sender username</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody class="tableBody">
+            <tr *ngFor="let errorLog of errorLogList">
+                <th scope="row"></th>
+                <td>{{errorLog.name}}</td>
+                <td>{{errorLog.url}}</td>
+                <td>{{errorLog.status}}</td>
+                <td>{{errorLog.message}}</td>
+                <td>{{errorLog.username}}</td>
+                <td>{{normalizeTime(errorLog.time)}}</td>
+                <td>
+                  <button class="action" (click)="errorLogLocationRequest(errorLog.fullId)">
+                    <i class="fas fa-info-circle" style="color: #002708"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="action" (click)="deleteRequest(errorLog.fullId, errorLog)">
+                    <i class="fas fa-trash-alt" style="color: #6a0000"></i>
+                  </button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

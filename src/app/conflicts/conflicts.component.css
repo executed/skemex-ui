@@ -1,0 +1,89 @@
+.pt-3-half {
+  padding-top: 1.4rem;
+}
+.card{
+  overflow: hidden;
+  position: relative;
+  font-size: 2vmin;
+  border: 2px solid #313131;
+  padding: 2vmin;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: .7s;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  max-height: 85vh;
+}
+.card-header{
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3vmin;
+}
+.card-body{
+  overflow-y: scroll;
+}
+.table{
+  color: black;
+  font-family: inherit;
+}
+.my-0{
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1rem;
+  width: 10vmin;
+  padding: .2rem;
+  font-size: 1.8vmin;
+  transition: 250ms background ease-in;
+  font-family: inherit;
+}
+.my-1{
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1rem;
+  width: 8vmin;
+  padding-top: .3rem;
+  font-size: 1.8vmin;
+  transition: 250ms background ease-in;
+  font-family: inherit;
+}
+.scrollbar
+{
+  margin-left: 30px;
+  float: left;
+  height: 300px;
+  width: 65px;
+  background: #F5F5F5;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+}
+
+.force-overflow
+{
+  min-height: 450px;
+}
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: red;
+  background-color: #555;
+}

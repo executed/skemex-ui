@@ -1,0 +1,142 @@
+.block {
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  font-size: 2vw;
+  border: 2px solid #313131;
+  clip-path: polygon(30% 0%, 100% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 100%, 0% 30%);
+  padding: 2vmin;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+}
+
+.status {
+  margin-top: 5px;
+  height: 5vh;
+  width: min-content;
+}
+
+::-webkit-scrollbar {
+  width: 20px;  /* remove scrollbar space */
+  color: grey;  /* optional: just make scrollbar invisible */
+}
+
+.space {
+   margin-bottom: 10vh;
+   width: auto;
+   height: 80vh;
+   clip-path: polygon(10% 0%, 100% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 100%, 0% 10%);
+   background-color: white;
+ }
+.space1 {
+  margin-bottom: 10vh;
+  width: auto;
+  height: auto;
+  clip-path: polygon(10% 0%, 100% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 100%, 0% 10%);
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  background: #918d8b;
+}
+button {
+  cursor:pointer;
+}
+
+
+.mainTitle {
+  margin-top: 5vh;
+  text-align: center;
+  color: black;
+  font-size: 6vmin;
+}
+
+tbody {
+  display: block;
+  height: 19rem;
+  overflow: auto;
+  width:100%;
+  font-size: 2vh;
+  text-align: center;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.content {
+  padding: 0;
+  text-align: center;
+  margin-top: 10vh;
+  font-size: 2vw;
+}
+
+.form-group {
+  font-size: 2vmin;
+}
+
+.content table {
+  font-size: 1vw;
+}
+
+.content b {
+  font-weight: bold;
+}
+
+.btnSubmit {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 3vmin;
+  transition: 250ms background ease-in;
+}
+
+.btnSubmit:hover {
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+
+.action {
+  border: none;
+  background: none;
+  color: black;
+  font-size: 3vmin;
+  padding: 0;
+  margin-left: 1vmin;
+}
+
+.table th {
+  padding: .3rem;
+  font-size: 2.2vh;
+}
+.table td {
+  padding: .3rem;
+  word-break: break-all;
+  text-align: center;
+}
+
+.add {
+  width: 100%;
+}
+
+.tableBody {
+  overflow-y: scroll;
+}
+.tableBody1 {
+  overflow-y: scroll;
+  display: block;
+  height: 27rem !important;
+  width:100%;
+  font-size: 2vh;
+  text-align: center;
+}

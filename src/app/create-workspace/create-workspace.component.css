@@ -1,0 +1,121 @@
+
+.workplace{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin: 20px;
+  background-color: white;
+}
+
+
+
+.workplace-1 .inner:after {
+  content: "";
+  position: absolute;
+  top: -3%;
+  left: -3%;
+  border-top: 7vh solid #800700;
+  border-right: 5vw solid transparent;
+}
+
+.workplace-1 .inner:before {
+  content: "";
+  position: absolute;
+  bottom: -3%;
+  right: -3%;
+  border-bottom: 7vh solid #800700;
+  border-left: 5vw solid transparent;
+}
+
+.workplace-2 .inner:after {
+  content: "";
+  position: absolute;
+  top: -3%;
+  left: -3%;
+  border-top: 7vh solid #FFC132;
+  border-right: 5vw solid transparent;
+}
+
+.workplace-2 .inner:before {
+  content: "";
+  position: absolute;
+  bottom: -3%;
+  right: -3%;
+  border-bottom: 7vh solid #FFC132;
+  border-left: 5vw solid transparent;
+}
+
+.workplace-3 .inner:after {
+  content: "";
+  position: absolute;
+  top: -3%;
+  left: -3%;
+  border-top: 7vh solid #006209;
+  border-right: 5vw solid transparent;
+}
+
+.workplace-3 .inner:before {
+  content: "";
+  position: absolute;
+  bottom: -3%;
+  right: -3%;
+  border-bottom: 7vh solid #006209;
+  border-left: 5vw solid transparent;
+}
+
+.workplace-1{
+  box-shadow: 0 0 15px #FF0000;
+  border: 1px solid #FF0000;
+}
+.workplace-2{
+  box-shadow: 0 0 15px #FFED30;
+  border: 1px solid #FFED30;
+}
+.workplace-3{
+  box-shadow: 0 0 15px #28a745;
+  border: 1px solid #28a745;
+}
+
+.lightSpace .inner div{
+  animation-name: blinker;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  animation-duration: 2s;
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  -webkit-animation-duration: 2s;
+}
+
+@keyframes blinker {
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+
+@-webkit-keyframes blinker {
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+
+.cursor{
+  font-family:Verdana, Geneva, sans-serif;
+  cursor:pointer;
+}
+
+.moveCursor{
+  font-family:Verdana, Geneva, sans-serif;
+  cursor:move;
+}
+
+.deleteButton{
+  position: absolute;
+  right: 0.4vw;
+  top: 0.4vh;
+  font-size: 2vmin;
+}
+
+.project-modal {
+  font-size: 50%;
+}

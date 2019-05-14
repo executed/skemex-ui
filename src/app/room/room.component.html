@@ -1,0 +1,67 @@
+<ng-template #template>
+  <div class="modal-header">
+    <div class="modalTitle"><h4>Edit room title</h4></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="form" [formGroup]="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group modalBody">
+        <input type="text" class="form-control" formControlName="title" ngModel name="title" id="title"
+               placeholder={{roomTitle}}>
+        <div *ngIf="form.controls['title'].hasError('required') && f.submitted">
+          <span class="error">Title is required</span>
+        </div>
+        <button type="submit" class="btnSubmit">Edit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template1>
+  <div class="modal-header">
+    <div class="modalTitle"><h2>Save changes?</h2></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="leaveWithoutSave()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button (click)="leaveWithSave()" class="btnSubmit" style="display: inline !important;">Yes</button>
+       
+    <button (click)="leaveWithoutSave()" class="btnSubmit" style="display: inline !important;">No</button>
+  </div>
+</ng-template>
+
+<div class="modal-room">
+  <h3 class="modal-room-title">{{room.title}}
+    <button *ngIf="authService.isAdmin()" (click)="openEditModal(template, room.id, room.title)" title="Edit room"><i
+      class="fas fa-pen"></i>
+    </button>
+  </h3>
+  <div id="leftBlock" *ngIf="authService.isAdmin()">
+    <button routerLink="/floor/{{officeId}}" title="Rooms"><i class="fas fa-arrow-alt-circle-left"></i></button>
+    <button *ngIf="editable" (click)="addWorkSpace()" title="Add workspace"><i class="fas fa-plus-circle"></i></button>
+    <button *ngIf="editable" (click)="saveAllWorkspaces()" title="Save"><i class="fas fa-save"></i></button>
+  </div>
+  <div id="rightBlock" class="toggle" *ngIf="authService.isAdmin()">
+    <b class="bold" *ngIf="!editable">View</b>
+    <b *ngIf="editable">View</b>
+
+    <material-slide-toggle
+      class="toggle"
+      [name]="name"
+      [checked]="editable"
+      [id]="id"
+      (change)="onChange($event,template1)">
+    </material-slide-toggle>
+    <b class="bold" *ngIf="editable">Edit</b>
+    <b *ngIf="!editable">Edit</b>
+  </div>
+  <div #tag class="room-plan {{room.type}}" id="room-plan">
+    <app-create-workspace (deleteRow)="onDeleteRow(workspace)" class="room" [editable]="editable"
+                          *ngFor="let workspace of workSpaces" [workspace]="workspace"
+                          (somethingEdited)="isSomethingChanged=true" [lightRooms]="lightRooms"></app-create-workspace>
+  </div>
+</div>
+

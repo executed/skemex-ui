@@ -1,0 +1,74 @@
+<ng-template #template>
+  <div class="modal-header">
+    <div class="modalTitle"><h4>New floor</h4></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form name="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group modalBody">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="number"
+          id="number"
+          pattern="[0-9]*"
+          placeholder="number"
+          numbersOnly>
+        <div *ngIf="formFloor.number.errors && this.form.invalid && !submitted">
+          <span class="error">Title is required</span>
+        </div>
+        <div *ngIf="form.errors.floorExist && submitted && form.errors ">
+          <span class="error">Title is exist</span>
+        </div>
+        <button class="btnSubmit">Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template2>
+  <div class="modal-header">
+    <div class="modalTitleDelete"><h4>Are you sure you want to delete {{selectedFloor.number}} floor?</h4></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="form" (ngSubmit)="deleteFloor(floorId)" #f="ngForm">
+      <div class="form-group modalBody">
+        <button class="btnDelete">Delete</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<div class="containerCustom">
+  <div class="parent">
+    <nav class="menu">
+      <ul class="menu-list b-pict" >
+        <li *ngFor="let floor of floors" class="menu-item b-pict" [class.menu-item_active]="floor === selectedFloor" (click)="onSelect(floor)" id="{{floor.id}}">{{floor.number}}
+          <div class="b-pict" *ngIf="authService.isAdmin()"   >
+            <button *ngIf = "floor === selectedFloor" (click)= "openDelModal(template2, floor.id)" class="b-pict__close" title="DEL">x</button>
+          </div>
+        </li>
+        <li class="button-item">
+          <button (click)="openModal(template)" class="addFloorButton" title="New floor"><i class="fas fa-plus-circle"></i></button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <section class="map-stage">
+    <div class="hall">
+      <div class="stage">
+        <h1 class="stage-title">{{stageTitle}}</h1>
+      </div>
+      <app-rooms [floor]="selectedFloor"></app-rooms>
+    </div>
+  </section>
+</div>
+
+
+

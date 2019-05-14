@@ -1,0 +1,29 @@
+<div class="content_">
+  <a  (click)="openModal(notificationss)"  title="Notifications" >
+    <span *ngIf="notificationsCount !== undefined && notificationsCount !== 0" class="countMe">{{notificationsCount}}</span>
+    <i class="fas fa-bell"></i>
+  </a>
+</div>
+
+<ng-template #notificationss>
+  <div class="modal-header">
+    <div class="modalTitle"><h4>Notifications</h4></div>
+    <button type="button" class="close closeModal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <button *ngIf="notifications !== undefined && notifications.length > 1" type="button" class="close closeModal " (click)="viewedAllNotification()" >
+    <span aria-hidden="true" class="pull-right">Viewed all</span>
+  </button>
+  <div *ngIf="notifications !== undefined && notifications.length === 0" class="nthNew">
+      <span >Nothing new</span>
+  </div>
+  <div class="modal-body">
+    <div class="allNotif">
+      <div *ngFor="let n of notifications" class="customNotification {{n.type}}">
+        <button type="button" class="close" aria-label="Close" (click)="viewedNotification(n)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{n.message}}
+      </div>
+    </div>

@@ -1,0 +1,56 @@
+<ng-template #template2>
+  <div class="modal-header">
+    <div class="modalTitle"><h4>Are you sure you want to delete {{officeName}}?</h4></div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="form" (ngSubmit)="deleteOffice(officeId)" #f="ngForm">
+      <div class="form-group modalBody">
+        <button class="btnDelete">Delete</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<div class="offices">
+  <h2 *ngIf="offices !== undefined && offices.length === 0">No offices available</h2>
+  <div *ngFor="let office of offices" [routerLink]="['floor', office.id]" class="office b-pict ">
+    <div class="b-pict">
+      <button (click)="openDelModal(template2, office.id)" class="b-pict__close" title="DEL">x</button>
+    </div>
+    <div class="officeBackground">
+    </div>
+    <div class="officeBackground1">
+    </div>
+    <div class="officeBackground2">
+    </div>
+    <div class="officeText">
+      <h2 class="office-title">{{office.name}}</h2>
+      <h3 class="office-title">{{office.city}}</h3>
+    </div>
+  </div>
+
+  <div class="addOffice text-center" *ngIf="authService.isAdmin()">
+    <form name="form" class="addForm" [formGroup]="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <h2 class="office-title">Add new office</h2>
+      <div class="form-group">
+        <input type="text" formControlName="name" class="form-control" ngModel name="name" id="name" placeholder="Name">
+        <div *ngIf="formOffice.name.errors && this.form.invalid && !submitted">
+          <span class="error">Title is required</span>
+        </div>
+        <input type="text" formControlName="city" class="form-control" ngModel name="city" id="city" placeholder="City">
+        <div *ngIf="formOffice.city.errors && this.form.invalid && !submitted">
+          <span class="error">City is not required</span>
+        </div>
+        <input type="text" formControlName="timeZone" class="form-control" ngModel name="timeZone" id="timeZone" placeholder="TimeZone">
+        <div *ngIf="formOffice.timeZone.errors && this.form.invalid && !submitted">
+          <span class="error">TimeZone is not required</span>
+        </div>
+        <button type="submit" class="btnSubmit">Submit </button>
+      </div>
+    </form>
+  </div>
+</div>
+
