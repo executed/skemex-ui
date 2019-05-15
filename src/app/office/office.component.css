@@ -1,0 +1,238 @@
+.addRoomButton {
+  position: absolute;
+  border: none;
+  text-align:center;
+  cursor:pointer;
+  color:black;
+  font-size:5vmax;
+  background: none;
+}
+.addRoomButton:hover{
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transition: 0.3s;
+}
+.b-pict:after,
+.b-pict__close {
+  opacity: 0;
+  transition: 0.3s;
+}
+.b-pict__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 9;
+  text-decoration: none;
+  width: 30px;
+  height: 30px;
+  line-height: 1;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  border: none;
+  border-radius: 50%;
+}
+.b-pict:hover:after,
+.b-pict:hover .b-pict__close {
+  opacity: 1;
+}
+
+.block{
+  overflow: hidden;
+  position: relative;
+  margin:0 auto;
+  font-size: 5vmin;
+  border: 2px solid #313131;
+  clip-path: polygon(30% 0%, 100% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 100%, 0% 30%);
+  padding: 2vmin;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+}
+
+.status{
+  margin-top: 5px;
+  height: 5vh;
+  width: min-content;
+}
+
+.space{
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  width: 80vw;
+  height: 80vh;
+  clip-path: polygon(10% 0%, 100% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 100%, 0% 10%);
+  background-color: white;
+}
+
+.mainTitle{
+  margin-top: 5vh;
+  text-align: center;
+  color: black;
+  font-size: 6vmin;
+}
+
+.content{
+  padding: 0;
+  line-height: 2;
+  text-align: center;
+  margin-top: 10vh;
+  font-size: 4vmin;
+}
+.content table{
+  font-size: 3vmin;
+}
+
+.content b{
+  font-weight: bold;
+}
+
+.btnSubmit {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 3vmin;
+  transition: 250ms background ease-in;
+}
+.btnSubmit:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+
+.action{
+  border: none;
+  background: none;
+  color: black;
+  font-size: 3vmin;
+  padding: 0;
+  margin-left: 1vmin;
+}
+
+.table th {
+  padding: .3rem;
+}
+
+.add{
+  width: 100%;
+}
+ul#todoList li span.delete {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+}
+
+.btnSubmit {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 4vmin;
+  transition: 250ms background ease-in;
+}
+.btnSubmit:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+.error {
+  color: red;
+  font-size: 2vmin;
+}
+.office-title{
+  color: black;
+  font-size: 8vmin;
+  font-weight: bold;
+}
+.btnDelete {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 3.3vmin;
+  transition: 250ms background ease-in;
+}
+.modalTitle{
+  padding-top: 10px;
+  text-align: center;
+}
+.btnDelete:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+.form-control{
+  width: 50%;
+  align-items: center;
+  margin-top: 5px;
+  align-items: center;
+  display: flex;
+  margin-left: 25%;
+}
+.addOffice{
+  margin-left: 25vw;
+  margin-right: 10vw;
+  width: 50vw;
+  padding: 3vmin;
+  overflow: hidden;
+  background-color: white;
+  align-items: center !important;
+  text-align: center;
+  display: block;
+  font-size: 5vmin;
+  height: auto;
+  margin-bottom: 10vh;
+}
+.office{
+  margin-left: 10vw;
+  margin-right: 10vw;
+  width: 80vw;
+  padding: 3vmin;
+  overflow: hidden;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+  font-size: 5vmin;
+  height: 35vh;
+  margin-bottom: 10vh;
+  display: inline-block;
+  position: relative;
+}
+
+.office:hover {
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transition: 1s;
+}
+
+.officeText{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.offices{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  height: 85vh;
+  overflow-y: scroll;
+}

@@ -1,0 +1,21 @@
+<div *ngIf="editable" #place cdkDrag cdkScrollable cdkDragBoundary=".room-plan"
+     (cdkDragStarted)="dragStarted($event)"
+     (cdkDragEnded)="dragEnded($event)"
+     (cdkDragMoved)="dragMoved($event)"
+     class="{{status}} workplace moveCursor" [ngStyle]="{'left': workspace.x+'%', 'top': workspace.y +'%'}">
+  <div class="inner">
+    <button *ngIf="workspace.isDeletable" class="deleteButton" (click)="removeWorkspace(workspace.id)">X</button>
+    <div class="text">{{'#'+workspace.number}}</div>
+    <div class="worker text"> {{workspaceName}}</div>
+    <span class="project-modal green">{{workspace.organizationName}}</span>
+  </div>
+</div>
+
+<div *ngIf="!editable" (click)="redirect()"
+     class="{{status}} workplace cursor" [ngStyle]="{'left': workspace.x+'%', 'top': workspace.y +'%'}">
+  <div class="inner">
+    <div class="text">{{'#'+workspace.number}}</div>
+    <div class="worker text"> {{workspaceName}}</div>
+    <span class="project-modal green">{{workspace.organizationName}}</span>
+  </div>
+</div>

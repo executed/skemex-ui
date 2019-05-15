@@ -1,0 +1,111 @@
+.block{
+  overflow: hidden;
+  position: relative;
+  margin:0 auto;
+  font-size: 2vw;
+  border: 2px solid #313131;
+  clip-path: polygon(30% 0%, 100% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 100%, 0% 30%);
+  padding: 2vmin;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+}
+label{
+  margin-top: 5px;
+}
+.status{
+  margin-top: 5px;
+  height: 5vh;
+  width: min-content;
+}
+
+.space{
+  margin-bottom: 10vh;
+  width: 150vw !important;
+  height: 80vh;
+  clip-path: polygon(10% 0%, 100% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 100%, 0% 10%);
+  background-color: white;
+}
+
+.backToRoom{
+  background: none;
+  border: none;
+  color: black;
+  float: left;
+}
+
+.mainTitle{
+  margin-top: 5vh;
+  text-align: center;
+  color: black;
+  font-size: 6vmin;
+}
+
+.content{
+  padding: 0;
+  line-height: 2;
+  text-align: center;
+  margin-top: 10vh;
+  font-size: 2vw;
+}
+
+
+.content table{
+  font-size: 1vw;
+}
+
+
+.content b{
+  font-weight: bold;
+}
+
+.btnSubmit {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: .25rem;
+  font-size: 3vmin;
+  transition: 250ms background ease-in;
+}
+.btnSubmit:hover{
+  background: white;
+  color: black;
+  transition: 250ms background ease-in;
+}
+.checkbox{
+  margin-top: 30px;
+}
+.action{
+  border: none;
+  background: none;
+  color: black;
+  font-size: 3vmin;
+  padding: 0;
+  margin-left: 1vmin;
+}
+
+.table th {
+  padding: .3rem;
+}
+tr{
+  cursor: pointer;
+}
+tr:after{
+}
+
+.add{
+  width: 100%;
+}
+.lead{
+  text-align: justify;
+  padding: 10px 5px 5px 10px;
+}
+.tableBody{
+  overflow-y: scroll;
+}

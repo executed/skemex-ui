@@ -1,0 +1,31 @@
+@import "~angular-notifier/styles";
+
+body{
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Century Gothic', sans-serif !important;
+  font-weight: 300;
+  background: url('./bg-header.png');
+}
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.toggle > .material-switch > input[type="checkbox"]:checked + .label-primary::after{
+  background: #333 !important;
+}
+
+.toggle > .material-switch > input[type="checkbox"]:checked + .label-primary::before{
+  background: #000 !important;
+  opacity: .5;
+}

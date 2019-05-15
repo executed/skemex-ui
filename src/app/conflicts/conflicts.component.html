@@ -1,0 +1,53 @@
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Merge conflicts</h3>
+  <div class="card-body">
+    <div id="table">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <!--<th class="text-center">#</th>-->
+          <th class="text-center">Message</th>
+          <th class="text-center">Accept Excel</th>
+          <th class="text-center">Accept DB</th>
+        </tr>
+        <tr *ngFor="let conflict of conflicts;">
+          <!--<td contenteditable="true">{{id + 1}}</td>-->
+          <td>{{conflict.message}}</td>
+          <td>
+            <button type="button" size="sm" class="my-0" (click)="resolveConflict('excel', conflict)">Excel</button>
+            <!--<button type="button" size="sm" class="my-0" (click)="openModal(inputFloorNumber)">Excel</button>-->
+          </td>
+          <td>
+            <button type="button" size="sm" class="my-0" (click)="resolveConflict('db', conflict)">Database</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #inputFloorNumber>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Enter Floor Number</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form novalidate name="form" [formGroup]="formInputFloorNumber" (ngSubmit)="submitResolveConflict()">
+      <div>
+        <label for="floorNumber">If you want create room, you should to choose floor:</label>
+        <input (keypress)="numberOnly($event)" id="floorNumber" type="text" class="form-control" formControlName="floorNumber">
+      </div>
+      <div class="text-center">
+        <button class="my-1">
+          Set
+        </button>
+      </div>
+      <div>
+        <h4 style="color: red;" *ngIf="floorErrorMessage">{{floorErrorMessage}}</h4>
+      </div>
+    </form>
+  </div>
+</ng-template>
+

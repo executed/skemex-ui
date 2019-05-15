@@ -1,0 +1,13 @@
+<div class="topnav" id="myTopnav">
+  <a routerLink="/" title="Offices" ><i class="fas fa-home "></i></a>
+  <app-notifications></app-notifications>
+  <div *ngIf="authService.isAdmin()">
+    <a routerLink="/conflicts" title="Merge conflicts">
+      <span *ngIf="appService.navConflictsCount !== undefined && appService.navConflictsCount !== 0" class="countMe">{{appService.navConflictsCount}}</span>
+      <i class="fas fa-exclamation-triangle"></i>
+    </a>
+    <a routerLink="/upload"  title="Upload excel"><i class="far fa-file-excel"></i></a>
+  </div>
+  <a href="#" (click)="authService.logout()" title="Logout"><i class="fas fa-door-open"></i></a>
+  <a *ngIf="authService.isAdmin()" title="Search" (click)="redirectToSearch()" class="right-item"><i class="fas fa-search"></i></a>
+</div>
