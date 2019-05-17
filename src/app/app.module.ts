@@ -18,6 +18,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {WorkspaceComponent} from './workspace/workspace.component';
 import {ModalModule} from 'ngx-bootstrap';
 import {BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap/datepicker';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import {ErrorsHandler} from './error/error-handler';
 import {SmthWentWrongComponent} from './smth-went-wrong/smth-went-wrong.component';
@@ -39,6 +40,7 @@ import {CsrfInterceptor} from './error/csrf-interceptor';
 import {GlobalInterceptor} from './error/global-interceptor';
 import {ErrorComponent} from './error/error.component';
 import { NumberDirective } from './floor/numbers-only.directive';
+import { InfoPageComponent } from './info-page/info-page.component';
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -97,7 +99,8 @@ const customNotifierOptions: NotifierOptions = {
     LoginLayoutsComponent,
     HomeLoyoutsComponent,
     ErrorComponent,
-    NumberDirective
+    NumberDirective,
+    InfoPageComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +117,8 @@ const customNotifierOptions: NotifierOptions = {
     DragDropModule,
     NotifierModule.withConfig(customNotifierOptions),
     UploadModule,
-    SlideToggleModule
+    SlideToggleModule,
+    PdfViewerModule
   ],
   providers: [
     {
