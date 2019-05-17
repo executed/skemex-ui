@@ -37,6 +37,7 @@
     "core-js": "^2.5.4",
     "express": "^4.16.4",
     "ng-drag-drop": "^5.0.0",
+    "ng2-pdf-viewer": "^5.2.4",
     "ngx-bootstrap": "^3.1.4",
     "ngx-cookie-service": "^2.1.0",
     "ngx-pretty-checkbox": "^1.0.2",
