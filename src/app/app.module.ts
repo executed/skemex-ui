@@ -40,6 +40,7 @@ import {CsrfInterceptor} from './error/csrf-interceptor';
 import {GlobalInterceptor} from './error/global-interceptor';
 import {ErrorComponent} from './error/error.component';
 import { NumberDirective } from './floor/numbers-only.directive';
+import {InfoPageComponent} from "./info-page/info-page.component";
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -98,7 +99,8 @@ const customNotifierOptions: NotifierOptions = {
     LoginLayoutsComponent,
     HomeLoyoutsComponent,
     ErrorComponent,
-    NumberDirective
+    NumberDirective,
+    InfoPageComponent
   ],
   imports: [
     BrowserModule,
