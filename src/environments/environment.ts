@@ -9,6 +9,7 @@ const productionMode = true;
 export const environment = {
   production: productionMode,
   apiUrl: (productionMode) ? 'https://skemex-back.herokuapp.com' : 'http://localhost:8080'
+
 };
 
 /*

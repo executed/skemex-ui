@@ -18,6 +18,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {WorkspaceComponent} from './workspace/workspace.component';
 import {ModalModule} from 'ngx-bootstrap';
 import {BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap/datepicker';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import {ErrorsHandler} from './error/error-handler';
 import {SmthWentWrongComponent} from './smth-went-wrong/smth-went-wrong.component';
@@ -114,7 +115,8 @@ const customNotifierOptions: NotifierOptions = {
     DragDropModule,
     NotifierModule.withConfig(customNotifierOptions),
     UploadModule,
-    SlideToggleModule
+    SlideToggleModule,
+    PdfViewerModule
   ],
   providers: [
     {

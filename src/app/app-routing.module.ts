@@ -14,6 +14,7 @@ import {ConflictsComponent} from './conflicts/conflicts.component';
 import {HomeLoyoutsComponent} from "./home-loyouts/home-loyouts.component";
 import {LoginLayoutsComponent} from "./login-layouts/login-layouts.component";
 import {ErrorComponent} from "./error/error.component";
+import {InfoPageComponent} from "./info-page/info-page.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
         path: 'errors',
         component: ErrorComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'info',
+        component: InfoPageComponent
       }
     ]
   },
