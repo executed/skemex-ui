@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {InfoPageService} from "./infopage.service";
 
 @Component({
   selector: 'app-info-page',
@@ -8,11 +8,19 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 })
 export class InfoPageComponent implements OnInit {
 
-  src = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+  private infoDocURL: string;
 
-  constructor() { }
+  constructor(private infoPageService: InfoPageService) { }
 
   ngOnInit() {
+    this.requestDocURL();
+  }
+
+  private requestDocURL(): void {
+    this.infoPageService.infoDocURLRequest().subscribe( data => {
+        this.infoDocURL = data.data;
+      }
+    )
   }
 
 }
