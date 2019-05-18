@@ -41,6 +41,7 @@ import {GlobalInterceptor} from './error/global-interceptor';
 import {ErrorComponent} from './error/error.component';
 import { NumberDirective } from './floor/numbers-only.directive';
 import {InfoPageComponent} from "./info-page/info-page.component";
+import {InfoPageService} from "./info-page/infopage.service";
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -140,7 +141,8 @@ const customNotifierOptions: NotifierOptions = {
     AuthGuard,
     AuthService,
     DatePipe,
-    CookieService
+    CookieService,
+    InfoPageService
   ],
   bootstrap: [AppComponent]
 })
