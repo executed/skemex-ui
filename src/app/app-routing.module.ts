@@ -61,10 +61,6 @@ const routes: Routes = [
         path: 'errors',
         component: ErrorComponent,
         canActivate: [AuthGuard]
-      },
-      {
-        path: 'info',
-        component: InfoPageComponent
       }
     ]
   },
@@ -75,6 +71,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LogInComponent
+      },
+      {
+        path: 'info',
+        component: InfoPageComponent
       },
       {
         path: '**',
