@@ -43,6 +43,7 @@ import { NumberDirective } from './floor/numbers-only.directive';
 import {InfoPageComponent} from "./info-page/info-page.component";
 import {InfoPageService} from "./info-page/infopage.service";
 import { YoutubeplayerComponent } from './youtubeplayer/youtubeplayer.component';
+import {YoutubePlayerModule} from "ng2-youtube-player";
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -121,7 +122,8 @@ const customNotifierOptions: NotifierOptions = {
     NotifierModule.withConfig(customNotifierOptions),
     UploadModule,
     SlideToggleModule,
-    PdfViewerModule
+    PdfViewerModule,
+    YoutubePlayerModule
   ],
   providers: [
     {
