@@ -46,6 +46,7 @@
     "ngx-slide-toggle": "^0.1.1",
     "pretty-checkbox": "^3.0.3",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.5.2",
     "tslib": "^1.9.0",
     "typescript": "~3.1.6",
     "zone.js": "~0.8.26"
