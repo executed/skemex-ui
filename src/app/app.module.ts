@@ -42,6 +42,7 @@ import {ErrorComponent} from './error/error.component';
 import { NumberDirective } from './floor/numbers-only.directive';
 import {InfoPageComponent} from "./info-page/info-page.component";
 import {InfoPageService} from "./info-page/infopage.service";
+import { YoutubeplayerComponent } from './youtubeplayer/youtubeplayer.component';
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -101,7 +102,8 @@ const customNotifierOptions: NotifierOptions = {
     HomeLoyoutsComponent,
     ErrorComponent,
     NumberDirective,
-    InfoPageComponent
+    InfoPageComponent,
+    YoutubeplayerComponent
   ],
   imports: [
     BrowserModule,
