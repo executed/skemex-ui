@@ -9,6 +9,10 @@ import {InfoPageService} from "./infopage.service";
 export class InfoPageComponent implements OnInit {
 
   private infoDocURL: string;
+  private infoDocVisible: boolean = false;
+  private infoVideoVisible: boolean = false;
+  private infoDocToggleBtnText = 'Watch info document';
+  private infoVideoToggleBtnText = 'Watch info video';
 
   constructor(private infoPageService: InfoPageService) { }
 
@@ -21,6 +25,16 @@ export class InfoPageComponent implements OnInit {
         this.infoDocURL = data.data;
       }
     )
+  }
+
+  private toggleInfoDocVisibility(): void {
+    this.infoDocVisible = !this.infoDocVisible;
+    this.infoDocToggleBtnText = (this.infoDocVisible) ? 'Close info document' : 'Watch info document';
+  }
+
+  private toggleInfoVideoVisibility(): void {
+    this.infoVideoVisible = !this.infoVideoVisible;
+    this.infoDocToggleBtnText = (this.infoDocVisible) ? 'Close info document' : 'Watch info document';
   }
 
 }

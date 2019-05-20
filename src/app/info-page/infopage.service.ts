@@ -12,7 +12,6 @@ export class InfoPageService {
   constructor(private http: HttpClient) {}
 
   public infoDocURLRequest(): Observable<any> {
-    console.log(InfoPageService.infoDocURLRequestURL);
     return this.http.get(InfoPageService.infoDocURLRequestURL);
   }
 }

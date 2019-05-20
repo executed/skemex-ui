@@ -1,10 +1,29 @@
 
-<div class="pdf-container">
+<div class="container vertical-center">
+  <div class="row">
+    <div class="col text-center">
+      <button (click)="toggleInfoDocVisibility()" class="btn btn-default btnSubmit btn-lg">{{infoDocToggleBtnText}}</button>
+      <hr>
+      <button (click)="toggleInfoVideoVisibility()" class="btn btn-default btnSubmit btn-lg">{{infoVideoToggleBtnText}}</button>
+    </div>
+  </div>
+</div>
+<div class="container-right">
+  <div class="row">
+    <div class="col text-center">
+      <a [routerLink]="'/'" class="btn btn-default btnSubmit btn-lg">Go to app</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="infoDocVisible" class="pdf-container">
   <pdf-viewer [src]="infoDocURL"
               [original-size]="false"
   ></pdf-viewer>
 </div>
-<div>
-  <app-youtubeplayer>
+
+<div *ngIf="infoVideoVisible">
+  <app-youtubeplayer
+    style="size: landscape; text-align: center; height: 300px">
   </app-youtubeplayer>
 </div>

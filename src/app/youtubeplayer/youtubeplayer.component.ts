@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import {YoutubeplayerService} from "./youtubeplayer.service";
 
 @Component({
   selector: 'app-youtubeplayer',
   templateUrl: './youtubeplayer.component.html',
   styleUrls: ['./youtubeplayer.component.css']
 })
-export class YoutubeplayerComponent{
+export class YoutubeplayerComponent implements OnInit{
 
-  id = 'qDuKsiwS5xw';
+  private videoId: string;
   private player;
   private ytEvent;
 
-  constructor() {
-
+  ngOnInit(): void {
+    this.requestVideoId();
   }
+
+  constructor(private videoService: YoutubeplayerService) {}
+
+  private requestVideoId(): void {
+    this.videoService.infoDocURLRequest().subscribe( data => {
+        this.videoId = data.data;
+      }
+    )
+  }
+
   onStateChange(event) {
     this.ytEvent = event.data;
   }
   savePlayer(player) {
     this.player = player;
-  }
-
-  playVideo() {
-    this.player.playVideo();
-  }
-
-  pauseVideo() {
-    this.player.pauseVideo();
   }
 
 }
