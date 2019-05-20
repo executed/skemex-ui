@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable()
 export class YoutubeplayerService {
 
-  private static infoVideoIdRequestURL = `${environment.apiUrl}/info/infoVideoId`;
+  private static infoVideoIdRequestURL = `${environment.apiUrl}/info/open/infoVideoId`;
 
   constructor(private http: HttpClient) {}
 

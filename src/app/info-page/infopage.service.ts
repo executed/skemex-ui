@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 @Injectable()
 export class InfoPageService {
 
-  private static infoDocURLRequestURL = `${environment.apiUrl}/info/infoDocURL`;
+  private static infoDocURLRequestURL = `${environment.apiUrl}/info/open/infoDocURL`;
 
   constructor(private http: HttpClient) {}
 
