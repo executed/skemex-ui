@@ -16,11 +16,13 @@ export class YoutubeplayerComponent implements OnInit{
     this.requestVideoId();
   }
 
-  constructor(private videoService: YoutubeplayerService) {}
+  constructor(private videoService: YoutubeplayerService) {
+  }
 
   private requestVideoId(): void {
     this.videoService.infoDocURLRequest().subscribe( data => {
         this.videoId = data.data;
+        console.log(this.videoId);
       }
     )
   }

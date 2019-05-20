@@ -34,7 +34,7 @@ export class InfoPageComponent implements OnInit {
 
   private toggleInfoVideoVisibility(): void {
     this.infoVideoVisible = !this.infoVideoVisible;
-    this.infoDocToggleBtnText = (this.infoDocVisible) ? 'Close info document' : 'Watch info document';
+    this.infoVideoToggleBtnText = (this.infoVideoVisible) ? 'Close info video' : 'Watch info video';
   }
 
 }

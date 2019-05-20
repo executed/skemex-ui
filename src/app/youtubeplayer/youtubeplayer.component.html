@@ -4,7 +4,8 @@
     </div>
     <div class="panel-body">
       <youtube-player
-        [videoId]="id"
+        *ngIf="videoId !== undefined"
+        [videoId]="videoId"
         (ready)="savePlayer($event)"
         (change)="onStateChange($event)"
       >
