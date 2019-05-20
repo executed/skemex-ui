@@ -44,6 +44,7 @@ import {InfoPageComponent} from "./info-page/info-page.component";
 import {InfoPageService} from "./info-page/infopage.service";
 import { YoutubeplayerComponent } from './youtubeplayer/youtubeplayer.component';
 import {YoutubePlayerModule} from "ng2-youtube-player";
+import {YoutubeplayerService} from "./youtubeplayer/youtubeplayer.service";
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -146,7 +147,8 @@ const customNotifierOptions: NotifierOptions = {
     AuthService,
     DatePipe,
     CookieService,
-    InfoPageService
+    InfoPageService,
+    YoutubeplayerService
   ],
   bootstrap: [AppComponent]
 })
